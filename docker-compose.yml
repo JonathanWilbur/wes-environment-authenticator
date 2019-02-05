@@ -1,0 +1,33 @@
+version: '3.7'
+
+networks:
+  messaging:
+    external: false
+
+services:
+
+  authn:
+    build: .
+    container_name: 'authnhost'
+    depends_on:
+      - messagebroker
+    environment:
+      CREDENTIALS: 'am9uYXRoYW4gd2lsYnVy'
+      QUEUE_SERVER_HOSTNAME: 'messagebroker'
+      QUEUE_USERNAME: 'guest'
+      QUEUE_PASSWORD: 'guest'
+    hostname: 'authnhost'
+    networks:
+      - messaging
+
+  messagebroker:
+    container_name: 'qhost'
+    hostname: 'qhost'
+    image: 'rabbitmq:management-alpine'
+    networks:
+      - messaging
+    ports:
+      - '5672:5672/tcp'
+      - '15672:15672/tcp'
+    volumes:
+      - "${PWD}/configuration/rabbitmq/enabled_plugins.erl:/etc/rabbitmq/enabled_plugins:ro"

@@ -1,0 +1,18 @@
+{
+  "name": "wes-environment-authenticator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jonathan M. Wilbur <jonathan@wilbur.space>",
+  "license": "MIT",
+  "dependencies": {
+    "amqplib": "^0.5.3",
+    "wildboar-microservices-ts": "^0.1.3"
+  },
+  "devDependencies": {
+    "@types/amqplib": "^0.5.9"
+  }
+}
